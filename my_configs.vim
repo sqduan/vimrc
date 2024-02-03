@@ -1,3 +1,14 @@
+"----------------------------------------------------------------
+" Personal used VIM configure file
+"
+" This is a VIM configuration file for my personal use which is
+" based on the everforest color scheme. It includes settings for
+" basic VIM feature and plug-ins, hope you like this.
+"
+" @author: Shiqi Duan
+" @date:   2024-2-3
+"----------------------------------------------------------------
+
 " Set color scheme as everforest
 colorscheme everforest
 set background=dark
