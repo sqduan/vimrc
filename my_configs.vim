@@ -12,7 +12,7 @@
 " Set color scheme as everforest
 colorscheme everforest
 set background=dark
-let g:everforest_background = 'medium'
+let g:everforest_background = 'light'
 
 " Remove the toolbar for gvim
 :set guioptions -=m
@@ -25,6 +25,16 @@ let g:everforest_background = 'medium'
 
 " Define the Leader key
 :let mapleader = "\<tab>"
+
+" Set the cursor type
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" reset the cursor on start (for older versions of vim, usually not required)
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
 
 " Let backspace behave normally
 :set backspace=indent,eol,start
@@ -72,6 +82,10 @@ set guifont=Fira\Code\ 12
 call plug#begin('~/.vim_runtime/my_plugins')
     " Declare the list of plugins
     Plug 'voldikss/vim-floaterm'
+    Plug 'godlygeek/tabular'
+    Plug 'preservim/vim-markdown'
+    Plug 'iamcco/mathjax-support-for-mkdp'
+    Plug 'iamcco/markdown-preview.vim'
 call plug#end()
 
 " Run :PlugInstall in vim to install & update the plugins
@@ -87,3 +101,9 @@ let g:NERDTreeWinPos = "left"
 " Float terminal config
 let g:floaterm_keymap_new = '<Leader>ft'
 let g:floaterm_keymap_toggle = '<Leader>t'
+
+" For Markdown config
+nmap <silent> <F8> <Plug>MarkdownPreview
+imap <silent> <F8> <Plug>MarkdownPreview
+nmap <silent> <F9> <Plug>StopMarkdownPreview
+imap <silent> <F9> <Plug>StopMarkdownPreview

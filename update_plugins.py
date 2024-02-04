@@ -70,7 +70,6 @@ GITHUB_ZIP = "%s/archive/master.zip"
 
 SOURCE_DIR = path.join(path.dirname(__file__), "sources_non_forked")
 
-
 def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
     # Download and extract file in temp dir
     with urllib.request.urlopen(zip_path) as req:
@@ -91,7 +90,6 @@ def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
 
     shutil.move(plugin_temp_path, plugin_dest_path)
     print("Updated {0}".format(plugin_name))
-
 
 def update(plugin):
     name, github_url = plugin.split(" ")
