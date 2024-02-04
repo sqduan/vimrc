@@ -23,6 +23,12 @@ let g:everforest_background = 'medium'
 " Set line number
 :set nu
 
+" Define the Leader key
+:let mapleader = "\<tab>"
+
+" Let backspace behave normally
+:set backspace=indent,eol,start
+
 " Give a highlight to
 highlight VertSplit cterm=bold ctermfg=darkgrey ctermbg=none
 highlight StatusLine cterm=bold ctermfg=darkgrey ctermbg=none
@@ -59,9 +65,25 @@ function! ResizeWindow(direction)
 endfunction
 
 set guifont=Fira\Code\ 12
+
+"----------------------------------------------------------------
+" Plugins installtion
+"----------------------------------------------------------------
+call plug#begin('~/.vim_runtime/my_plugins')
+    " Declare the list of plugins
+    Plug 'voldikss/vim-floaterm'
+call plug#end()
+
+" Run :PlugInstall in vim to install & update the plugins
+
 "----------------------------------------------------------------
 " Configuration for plugins
 "----------------------------------------------------------------
 " Nerd Tree config
-let g:NERDTreeWinPos = "left"
 nnoremap <F6> :NERDTreeToggle<CR>
+au VimEnter *  NERDTree                " Open Nerd Tree by default
+let g:NERDTreeWinPos = "left"
+
+" Float terminal config
+let g:floaterm_keymap_new = '<Leader>ft'
+let g:floaterm_keymap_toggle = '<Leader>t'
