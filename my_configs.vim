@@ -1,4 +1,4 @@
-"----------------------------------------------------------------
+"================================================================
 " Personal used VIM configure file
 "
 " This is a VIM configuration file for my personal use which is
@@ -7,8 +7,11 @@
 "
 " @author: Shiqi Duan
 " @date:   2024-2-3
-"----------------------------------------------------------------
+"================================================================
 
+"----------------------------------------------------------------
+" Appearance setting for MyVim
+"----------------------------------------------------------------
 " Set color scheme as everforest
 colorscheme everforest
 set background=dark
@@ -23,13 +26,20 @@ let g:everforest_background = 'light'
 " Set line number
 :set nu
 
-" Define the Leader key
-:let mapleader = "\<tab>"
-
 " Set the cursor type
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
+" Give a highlight to
+highlight VertSplit cterm=bold ctermfg=darkgrey ctermbg=none
+highlight StatusLine cterm=bold ctermfg=darkgrey ctermbg=none
+
+" Set font for gvim, use Fira Code which is a programming friendly font
+set guifont=Fira\Code\ 12
+
+"----------------------------------------------------------------
+" Default behavior settings
+"----------------------------------------------------------------
 " reset the cursor on start (for older versions of vim, usually not required)
 augroup myCmds
 au!
@@ -39,9 +49,8 @@ augroup END
 " Let backspace behave normally
 :set backspace=indent,eol,start
 
-" Give a highlight to
-highlight VertSplit cterm=bold ctermfg=darkgrey ctermbg=none
-highlight StatusLine cterm=bold ctermfg=darkgrey ctermbg=none
+" Define the Leader key
+:let mapleader = "\<tab>"
 
 " Toggle terminal using F2
 nnoremap <F2> :call ToggleTerminal()<CR>
@@ -74,8 +83,6 @@ function! ResizeWindow(direction)
     endif
 endfunction
 
-set guifont=Fira\Code\ 12
-
 "----------------------------------------------------------------
 " Plugins installtion
 "----------------------------------------------------------------
@@ -83,11 +90,12 @@ call plug#begin('~/.vim_runtime/my_plugins')
     " Declare the list of plugins
     Plug 'voldikss/vim-floaterm'
     Plug 'godlygeek/tabular'
+
+    " Add markdown support
     Plug 'preservim/vim-markdown'
     Plug 'iamcco/mathjax-support-for-mkdp'
     Plug 'iamcco/markdown-preview.vim'
 call plug#end()
-
 " Run :PlugInstall in vim to install & update the plugins
 
 "----------------------------------------------------------------
