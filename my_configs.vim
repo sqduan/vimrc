@@ -26,6 +26,10 @@ let g:everforest_background = 'light'
 " Set line number
 :set nu
 
+" Open as maximum window as default
+set lines=9999
+set columns=9999
+
 " Set the cursor type
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
@@ -52,17 +56,6 @@ augroup END
 " Define the Leader key
 :let mapleader = "\<tab>"
 
-" Toggle terminal using F2
-nnoremap <F2> :call ToggleTerminal()<CR>
-
-function! ToggleTerminal()
-    if &buftype ==# 'terminal'
-        quit
-    else
-        :botright terminal
-    endif
-endfunction
-
 " Resize window using Ctrl + hjkl, through it is not good enough
 nnoremap <silent> <C-h> :call ResizeWindow('h')<CR>
 nnoremap <silent> <C-j> :call ResizeWindow('j')<CR>
@@ -83,13 +76,22 @@ function! ResizeWindow(direction)
     endif
 endfunction
 
+" Tab control
+nnoremap <Leader>c :tabnew<CR>           " Create new tab
+nnoremap <Leader>q :tabclose<CR>         " Close current tab
+nnoremap <Leader>n :tabnext<CR>          " Go to next tab
+nnoremap <Leader>p :tabprevious<CR>      " Go to previous tab
+
 "----------------------------------------------------------------
-" Plugins installtion
+" Plugins installation
 "----------------------------------------------------------------
 call plug#begin('~/.vim_runtime/my_plugins')
     " Declare the list of plugins
     Plug 'voldikss/vim-floaterm'
     Plug 'godlygeek/tabular'
+
+    " Text & spell check
+    Plug 'kamykn/spelunker.vim'
 
     " Add markdown support
     Plug 'preservim/vim-markdown'
@@ -107,8 +109,14 @@ au VimEnter *  NERDTree                " Open Nerd Tree by default
 let g:NERDTreeWinPos = "left"
 
 " Float terminal config
-let g:floaterm_keymap_new = '<Leader>ft'
-let g:floaterm_keymap_toggle = '<Leader>t'
+nnoremap   <silent>   <F2>   :FloatermToggle<CR>
+tnoremap   <silent>   <F2>   <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   <F3>    :FloatermPrev<CR>
+tnoremap   <silent>   <F3>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F4>    :FloatermNext<CR>
+tnoremap   <silent>   <F4>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F12>    :FloatermNew<CR>
+tnoremap   <silent>   <F12>    <C-\><C-n>:FloatermNew<CR>
 
 " For Markdown config
 nmap <silent> <F8> <Plug>MarkdownPreview
