@@ -27,8 +27,8 @@ let g:everforest_background = 'light'
 :set nu
 
 " Open as maximum window as default
-set lines=9999
-set columns=9999
+set lines=999
+set columns=999
 
 " Set the cursor type
 let &t_SI = "\e[6 q"
@@ -53,6 +53,9 @@ augroup END
 " Let backspace behave normally
 :set backspace=indent,eol,start
 
+"----------------------------------------------------------------
+" Default shortcuts
+"----------------------------------------------------------------
 " Define the Leader key
 :let mapleader = "\<tab>"
 
@@ -82,6 +85,10 @@ nnoremap <Leader>q :tabclose<CR>         " Close current tab
 nnoremap <Leader>n :tabnext<CR>          " Go to next tab
 nnoremap <Leader>p :tabprevious<CR>      " Go to previous tab
 
+" Content saving
+" Map <Leader>s to save content in Normal mode
+nnoremap <Leader>w :w<CR>
+
 "----------------------------------------------------------------
 " Plugins installation
 "----------------------------------------------------------------
@@ -92,6 +99,10 @@ call plug#begin('~/.vim_runtime/my_plugins')
 
     " Text & spell check
     Plug 'kamykn/spelunker.vim'
+
+    " Easy coding plugins
+    Plug 'preservim/nerdcommenter'
+    Plug 'github/copilot.vim'            " code suggestion
 
     " Add markdown support
     Plug 'preservim/vim-markdown'
