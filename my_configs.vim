@@ -10,13 +10,16 @@
 "================================================================
 
 "----------------------------------------------------------------
-" Appearance setting for MyVim
+" Scheme & font setting for MyVim
 "----------------------------------------------------------------
-" Set color scheme as everforest
+" Color scheme setting, use everforest as default color scheme
 colorscheme everforest
 set background=dark
 let g:everforest_background = 'light'
 
+"----------------------------------------------------------------
+" Default appearance settings
+"----------------------------------------------------------------
 " Remove the toolbar for gvim
 :set guioptions -=m
 
@@ -34,7 +37,7 @@ set columns=999
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-" Give a highlight to
+" Give a highlight to split and status line
 highlight VertSplit cterm=bold ctermfg=darkgrey ctermbg=none
 highlight StatusLine cterm=bold ctermfg=darkgrey ctermbg=none
 
@@ -56,8 +59,7 @@ augroup END
 "----------------------------------------------------------------
 " Default shortcuts
 "----------------------------------------------------------------
-" Define the Leader key
-:let mapleader = "\<tab>"
+:let mapleader = "\<tab>"    " Define the Leader key as tab
 
 " Resize window using Ctrl + hjkl, through it is not good enough
 nnoremap <silent> <C-h> :call ResizeWindow('h')<CR>
@@ -85,8 +87,12 @@ nnoremap <Leader>q :tabclose<CR>         " Close current tab
 nnoremap <Leader>n :tabnext<CR>          " Go to next tab
 nnoremap <Leader>p :tabprevious<CR>      " Go to previous tab
 
+" Use left key for tab previous and right key for tab next
+nnoremap <Left>    :tabprevious<CR>
+nnoremap <Right>   :tabnext<CR>
+
 " Content saving
-" Map <Leader>s to save content in Normal mode
+" Map <Leader>w to save content in Normal mode
 nnoremap <Leader>w :w<CR>
 
 "----------------------------------------------------------------
